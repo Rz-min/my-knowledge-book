@@ -3,9 +3,9 @@ on:
   push:
     branches:
     - publish
-    paths:
-    - "src/**.md"
-    - "book.toml"
+    # paths:
+    # - "src/**.md"
+    # - "book.toml"
 
 jobs:
   deploy:
@@ -16,9 +16,10 @@ jobs:
       uses: ./.github/actions/build
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        EXTERNAL_REPOSITORY: izmrui2020/izmrui2020.github.io
-        PUBLISH_BRANCH: main
-        PUBLISH_DIR: ./book
-        DESTINATION_DIR: my-knowledge-book
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        external_repository: izmrui2020/izmrui2020.github.io/
+        publish_branch: main
+        publish_dir: ./book
+        destination_dir: ./my-knowledge-book
+        keep_files: true
