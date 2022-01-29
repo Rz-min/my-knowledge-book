@@ -3,9 +3,9 @@ on:
   push:
     branches:
     - publish
-    paths:
-    - "src/**.md"
-    - "book.toml"
+#     paths:
+#     - "src/**.md"
+#     - "book.toml"
 
 jobs:
   deploy:
