@@ -22,6 +22,7 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3   
       env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         EXTERNAL_REPOSITORY: izmrui2020/my-knowledge-book
         PUBLISH_BRANCH: main
         PUBLISH_DIR: ./docs
