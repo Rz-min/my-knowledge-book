@@ -19,6 +19,4 @@ jobs:
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         EXTERNAL_REPOSITORY: izmrui2020/izmrui2020.github.io
-        PUBLISH_BRANCH: main
         PUBLISH_DIR: ./book
-        DESTINATION_DIR: my-knowledge-book
