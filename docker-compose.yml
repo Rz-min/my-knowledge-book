@@ -1,0 +1,9 @@
+version: "3"
+services:
+  mdbook:
+    build: .
+    volumes:
+      - ./:/mdbook
+    ports:
+      - 3000:3000
+    container_name: mdbook2pages_mdbook
