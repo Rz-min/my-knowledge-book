@@ -1,0 +1,537 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>my-documents</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> introduction</a></li><li class="chapter-item expanded "><a href="production/tof.html"><strong aria-hidden="true">2.</strong> base</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="production/md1.html"><strong aria-hidden="true">2.1.</strong> md1</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">my-documents</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">introduction</a></h1>
+<p>test</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="base"><a class="header" href="#base">base</a></h1>
+<p>here is knowledge on base rust</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="rustのオレオレドキュメント"><a class="header" href="#rustのオレオレドキュメント">Rustのオレオレドキュメント</a></h1>
+<p>Status: In progress</p>
+<p>Rustの自分なりのドキュメントです。備忘録です。</p>
+<p>気になったことを順なので、まとまりはないです。</p>
+<h2 id="vscode-で-rust-analyzerを利用する場合にはrust-extention-option--rust-clientengine-rust-analyzer"><a class="header" href="#vscode-で-rust-analyzerを利用する場合にはrust-extention-option--rust-clientengine-rust-analyzer">vscode で rust-analyzerを利用する場合には、Rust extention option &gt; rust-client.engine: rust-analyzer</a></h2>
+<ul>
+<li>Language Server重い。</li>
+<li>rust-analyzerの方がレイテンシ志向。</li>
+</ul>
+<h1 id="base-1"><a class="header" href="#base-1">Base</a></h1>
+<ul>
+<li>strはスタックに乗る。固定サイズ、文字列そのものを変更できない。</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s1 = String::from(&quot;hogehoge&quot;);
+let s2: &amp;str = &amp;s1; //ポインタのコピーだけ
+let s3 = s2.to_string(); //メモリの確保
+<span class="boring">}
+</span></code></pre></pre>
+<ul>
+<li>constはコンパイラのビルド時に実際の値に置き換える。staticはバイナリファイルの特定のセクションに配置。
+<ul>
+<li>なので、コンパイル時に決まらないが、実行時に決まる定数を定義する場合には、 <code>lazy_static</code> を使用するのがいい。</li>
+</ul>
+</li>
+</ul>
+<h3 id="vector"><a class="header" href="#vector">Vector</a></h3>
+<ul>
+<li>vectorアクセスは <code>get(), get_mut()</code> を使う。 <code>vec[2]</code> だと要素以外にアクセスするとパニックする。</li>
+</ul>
+<h3 id="format-文字列の作成"><a class="header" href="#format-文字列の作成"><code>format!</code> 文字列の作成</a></h3>
+<ul>
+<li>フォーマットの定義と、流す値から新しい文字列を作成する。マクロ。</li>
+</ul>
+<h1 id="よく使うマクロ"><a class="header" href="#よく使うマクロ">よく使うマクロ</a></h1>
+<p><a href="production/%5Bhttps://doc.rust-lang.org/core/index.html#macros%5D(https://doc.rust-lang.org/core/index.html#macros)">coreのマクロ</a></p>
+<ul>
+<li><code>vec![]</code></li>
+<li><code>cfg!</code> コンパイラから該当のフラグが渡されたらtureになる。</li>
+<li>とりあえずコンパイルを通す時。
+<ul>
+<li><code>unimplemented!</code> &gt; not implemented, <code>todo!</code> &gt; not yet implemented.</li>
+</ul>
+</li>
+</ul>
+<h3 id="deriveマクロ"><a class="header" href="#deriveマクロ">Deriveマクロ</a></h3>
+<ul>
+<li><code>{:?}</code> &gt; std::fmt::Debug(#[derive(Debug)])</li>
+<li><code>Default</code>  <code>Clone</code> <code>Copy</code> <code>Hash</code></li>
+<li><code>Eq/PartialEq</code> <code>Ord/PartialOrd</code></li>
+</ul>
+<p>Eqは <code>a == a, a ==b なら b == a, a == b &amp;&amp;  b == c なら a == c</code> を満たす必要がある。浮動小数f32はこの性質を満たさない(0.0/0.0 = non)</p>
+<p>条件からa == aを満たさなくてもOKにしたのがPartialEq,</p>
+<h3 id="宣言マクロ"><a class="header" href="#宣言マクロ">宣言マクロ</a></h3>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>macro_rules! five_times {
+	($x:expr) =&gt; {
+		5 * $x
+	};
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="制御構文"><a class="header" href="#制御構文">制御構文</a></h3>
+<ul>
+<li>変数に束縛できる。 <code>let res = if 0 == hoge {}</code>
+<ul>
+<li>loop、if let ,  whileも同様。</li>
+</ul>
+</li>
+<li>ループ処理はラベルで繰り返しを抜ける場所を指定できる。</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>'main: loop {
+	hgoehgoe;
+	'sub: loop {
+		 hogehoge;
+		 break 'main;  //mainのループを抜けれる。
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="box"><a class="header" href="#box">Box</a></h3>
+<ul>
+<li>Boxは値をヒープに乗せる。</li>
+<li>スマートポインター</li>
+<li>スタックはコンパイル時にサイズが分かっていて、固定長のみ。</li>
+<li>スタックにヒープのポインターを置く。</li>
+<li>特徴
+<ul>
+<li>コンパイル時にサイズがわからない型を包む。</li>
+<li>大きなサイズの型の値を渡す時に、データの中身をコピーせずに、ポインタを渡す。</li>
+<li>共通のトレイトを実装した型をポインタで扱えるつまり、 <code>dyn</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="optionやresultをopen-matchするとき"><a class="header" href="#optionやresultをopen-matchするとき">OptionやResultをopen, matchするとき</a></h1>
+<ul>
+<li>エラーに何もしなくて、委託する時は <code>?</code> オペレーション。</li>
+<li><code>expect</code> はoption型のメソッドで、Someだったら返却、Noneだったら、引数の文字列を返して <code>panic()</code> を起こす。</li>
+<li><code>let a = bar(n).expect(&amp;format!(&quot;n = {}&quot;, n));</code> の場合にはNoneでもformat!をよび、ヒープを確保して文字列を整形する。コスト高い。</li>
+<li>matchでそれぞれのアーム書くか,<code>if let</code> で回避できるが冗長。 <code>unwrap_or_else()</code> を使う。</li>
+<li><code>unwrap_or_else()</code>  &gt;  <code>Some = open</code>,  <code>None = pass closure</code></li>
+<li><code>unwrap_or()</code> は引数をそのまま。</li>
+<li>Resultでも <code>unwrap_or_else</code> が使える。</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let r = Some(1223);
+
+let res = match r {
+	Some(v) =&gt; v,
+	None =&gt; println!(&quot;hogehoge&quot;);
+}
+or  r = Ok(12345);
+if let Ok(v) =&gt; r {
+	pringln!(&quot;hogehgoe: {:?}, r);
+}
+
+let a = bar(n).unwrap_or_else(|| panic!(&quot;n = {}&quot;, n));
+<span class="boring">}
+</span></code></pre></pre>
+<ul>
+<li><code>anyhow</code> でも同じく。 <code>format!()</code> などで、エラーの整形をするのはコストが高いから、エラーの整形は <code>with_context</code> でクロージャを渡す。</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>std::fs::open(&quot;config.yml&quot;).context(&quot;Failed to open config file&quot;)?;
+
+std::fs::open(path).with_context(|| format!(&quot;Failed to open config file: {}&quot;, path))?;
+<span class="boring">}
+</span></code></pre></pre>
+<h1 id="match"><a class="header" href="#match">match</a></h1>
+<ul>
+<li>変数束縛</li>
+<li>パターンの網羅</li>
+<li><code>_</code> でパターンのワイルドカード。</li>
+<li>Some(x)に式を当てはめれる。</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let something: Option&lt;i32&gt; = Some(12);
+
+match something {
+	Some(x) if x %2 == 0 =&gt; , //something 
+	Some(x) =&gt; ,
+	None =&gt; ,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="map-and_then-の違い"><a class="header" href="#map-and_then-の違い"><code>map</code> <code>and_then</code> の違い。</a></h3>
+<ul>
+<li><code>and_then</code>は<code>Some</code>で包んで返す。</li>
+<li>関数の返り値がwrapされるときに使い分ける。<a href="production/%5Bhttps://cipepser.hatenablog.com/entry/rust-map-and_then%5D(https://cipepser.hatenablog.com/entry/rust-map-and_then)">detail</a></li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn map&lt;U, F: FnOnce(T) -&gt; U&gt;(self, f: F) -&gt; Option&lt;U&gt; {
+    match self {
+        Some(x) =&gt; Some(f(x)),
+        None =&gt; None,
+    }
+}
+
+pub fn and_then&lt;U, F: FnOnce(T) -&gt; Option&lt;U&gt;&gt;(self, f: F) -&gt; Option&lt;U&gt; {
+    match self {
+        Some(x) =&gt; f(x),
+        None =&gt; None,
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h1 id="iterator"><a class="header" href="#iterator">Iterator</a></h1>
+<ul>
+<li>データ集合に対して要素を一つずつ取り出す場合には、 <code>Iterator</code> トレイトの実装をしていないといけない。</li>
+<li><code>type</code> <code>next()</code> でIteratorを作ることができる。</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Iter {
+	current: usize,
+	max: usize,
+}
+
+impl Iterator for Iter {
+	type Item = usize,
+	
+	fn next(&amp;mut self) -&gt; Option&lt;usize&gt; {
+		self.current += 1;
+		if self.current - 1 &lt; self.max {
+			Some(self.currect - 1)
+		}
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="vectorアクセス"><a class="header" href="#vectorアクセス">vectorアクセス。</a></h2>
+<ul>
+<li>vectorのアクセスはget, get_mutを使用する。直接 vec[1]の様にすると値がなかった場合にパニックになってしまう。なので、しっかりと、optionを返す様にして値がなかった場合にどの様な風にするのかを考えておく。</li>
+</ul>
+<h2 id="into-try_into"><a class="header" href="#into-try_into">into, try_into</a></h2>
+<h2 id="traitにデフォルトを当てられるのか"><a class="header" href="#traitにデフォルトを当てられるのか">traitにデフォルトを当てられるのか？</a></h2>
+<p>特定のアノテーションでそれができそう。</p>
+<h1 id="スレッド"><a class="header" href="#スレッド">スレッド</a></h1>
+<ul>
+<li>spawnはクロージャを他のスレッドに持っていって実行。</li>
+<li>クロージャは変数の参照をキャプチャするので、ライフタイムがspawnのほが長生きする可能性がある。→moveさせる。</li>
+<li>vecpushでもspawnできる</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut vec = vec![];
+
+for i in 0..10 {
+    vec.push(tokio::spawn(async move {
+		}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<ul>
+<li>message passingと共有メモリ使い分けイメージ</li>
+</ul>
+<p>ある共有したい対象がある場合に、権利をタスクに対して渡していくのが共有メモリで、権利を自分で行使するから実装するタスクを渡してっていうのがpassing共有メモリは使用時は権利をブロックするからコストがかかる,passingは実行タスクをキューイングできるからパフォーマンス的に恩恵がある。</p>
+<h1 id="非同期"><a class="header" href="#非同期">非同期</a></h1>
+<ul>
+<li>
+<p><code>Future</code> トレイトを実装した型を戻り値にすることによって実現する。</p>
+</li>
+<li>
+<p>ステートマシンであり、readyかpendignのステーを表現してる。</p>
+</li>
+<li>
+<p><code>Future</code> ステートマシンは各タスクに対して決まったサイズ、一ヶ所のヒープに <code>Pin</code> がされている。メモリも圧迫しない。</p>
+</li>
+<li>
+<p>非同期のライフタイムについて、</p>
+</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>async fn something(arg: &amp;i32) -&gt; i32 {
+	*arg
+}
+//これは以下に展開される。
+fn something&lt;'a&gt;(arg: &amp;'a i32) -&gt; impl Future&lt;Output = i32&gt; + 'a {
+		async move {
+				hogehgoe
+		}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<ul>
+<li>問題はスレッドを跨いでFutureの値を贈りたい場合に、’staticライフタイムが必要になってくる。</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn something() -&gt; impl Future&lt;Output = i32&gt; {
+		let value;
+		fn func(value);
+}
+fn func(value: hoge) {
+		//ここで別のスレッドに送る処理がある場合。
+}
+//これはエラーになる。
+
+//asyncブロックでwrapするとライフタイムを解決できる。
+fn something() -&gt; impl Future&lt;Output = i32&gt; {
+		async {
+			let value;
+			fn func(value);
+		}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<ul>
+<li>traitをasyncにしたいなら、 <code>async-trait</code></li>
+</ul>
+<h1 id="公開について"><a class="header" href="#公開について">公開について</a></h1>
+<ul>
+<li>必要な物だけにpubをつける癖をつける。</li>
+</ul>
+<h1 id="testについて"><a class="header" href="#testについて">testについて</a></h1>
+<ul>
+<li>
+<p><code>#[cfg(test)] mod test{}</code> を使うと、その中にテストで使うヘルパー関数を中に入れられる。</p>
+<p>mod testのなかにテスト用の <code>use</code> を入れる。ビルド時には省かれる’。</p>
+</li>
+<li>
+<p><code>cargo-tarpaulin</code> テストがソースコードをどの程度網羅しているのかを示す指標。</p>
+</li>
+<li>
+<p><code>cargo-profiler</code> 各関数呼び出し回数をカウントしたり、キャッシュのヒット率などの情報を取得するプログラム。 <code>flamegragh</code> プロファイルを可視化する。 <code>hyperfine</code> もベンチマークを取れる。</p>
+</li>
+</ul>
+<h1 id="path-pathbuf"><a class="header" href="#path-pathbuf">Path, PathBuf</a></h1>
+<ul>
+<li>Rustの内部文字列表現は <code>UTF-8</code> で持ってるが、OSのもつパスは必ずそうなるとは言えないので、（windowsはUTF-16, C言語互換のヌル終端文字列）Path, PathBufの構造体でpathをもつ。Path = PathBufのスライス。</li>
+</ul>
+<h1 id="docker"><a class="header" href="#docker">Docker</a></h1>
+<ul>
+<li>cacheを使い回す。</li>
+<li>rustのイメージサイズが1.21GB</li>
+<li>muslはシングルバイナリを生成することができ、静的にリンクすることができる。ただ、Dockerでbuildするときは<a href="production/%5Bhttps://andygrove.io/2020/05/why-musl-extremely-slow/%5D(https://andygrove.io/2020/05/why-musl-extremely-slow/)">musl出なくてdebianを使う</a></li>
+<li>リリースイメージにrustのツールチェーンは必要がないのでリリースはdebianのみでいい。</li>
+</ul>
+<pre><code class="language-docker">FROM rust:latest AS builder
+
+//先にtomlのみでビルドをする。
+WORKDIR /app
+COPY Cargo.toml Cargo.toml 
+RUN mkdir src
+RUN echo &quot;fn main(){}&quot; &gt; src/main.rs
+RUN cargo build --release
+
+//その後にソースを入れてbuild
+COPY ./src ./src
+RUN rm -f target/release/deps/app*
+RUN cargo build --release
+
+FROM debian:10.4
+
+COPY --from=builder /app/target/release/app /usr/local/bin/app
+CMD [&quot;app&quot;]
+</code></pre>
+<h1 id="cargolockとrust-toolchainでバージョンを固定"><a class="header" href="#cargolockとrust-toolchainでバージョンを固定">Cargo.lockとrust-toolchainでバージョンを固定。</a></h1>
+<ul>
+<li><code>REV=</code>git rev-parse HEAD<code> cargo run</code> でリビジョンを取得できる。特定のリビジョンでbuildを指定することができる。</li>
+<li><code>cargo audit</code> で脆弱性の含まれているcrateを検出できる。</li>
+<li>脆弱性データベース。<a href="https://github.com/RustSec/advisory-db">auditはここを参照してる。</a></li>
+</ul>
+<h1 id="prometheus"><a class="header" href="#prometheus">Prometheus</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>
