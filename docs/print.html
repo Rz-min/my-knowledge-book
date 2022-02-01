@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> introduction</a></li><li class="chapter-item expanded "><a href="production/tof.html"><strong aria-hidden="true">2.</strong> base</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="production/md1.html"><strong aria-hidden="true">2.1.</strong> md1</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> introduction</a></li><li class="chapter-item expanded "><a href="production/tof.html"><strong aria-hidden="true">2.</strong> base</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="production/md1.html"><strong aria-hidden="true">2.1.</strong> md1</a></li><li class="chapter-item expanded "><a href="production/md2.html"><strong aria-hidden="true">2.2.</strong> md2</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -490,6 +490,86 @@ CMD [&quot;app&quot;]
 <li>脆弱性データベース。<a href="https://github.com/RustSec/advisory-db">auditはここを参照してる。</a></li>
 </ul>
 <h1 id="prometheus"><a class="header" href="#prometheus">Prometheus</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="today"><a class="header" href="#today">Today</a></h1>
+<ul>
+<li>structにderive macroすることでこのstructにパーサの設定を渡せる。</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(StructOpt, Debug)]
+pub struct Opt {}
+<span class="boring">}
+</span></code></pre></pre>
+<ul>
+<li>PathBufを受け取りたい場合。</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[structopt(short = &quot;c&quot;, long = &quot;csv_url&quot;, parse(from_os_str))]
+    pub csv_path: PathBuf,
+<span class="boring">}
+</span></code></pre></pre>
+<p>command</p>
+<p><code>./target/debug/curl_and_request -c gheohgeo -u hogegeo</code></p>
+<p>すごくシンプルに</p>
+<pre><pre class="playground"><code class="language-rust">//
+use structopt::{clap::{self, arg_enum}, StructOpt};
+use std::path::PathBuf;
+
+#[derive(StructOpt, Debug)]
+#[structopt(name = &quot;example&quot;)]
+#[structopt(long_version(option_env!(&quot;LONG_VERSION&quot;).unwrap_or(env!(&quot;CARGO_PKG_VERSION&quot;))))] //git のリビジョン
+#[structopt(setting(clap::AppSettings::ColoredHelp))] //put color
+pub struct Opt {
+    #[structopt(short = &quot;c&quot;, long = &quot;csv_url&quot;)]
+    pub csv_path: PathBuf,
+    #[structopt(short = &quot;u&quot;, long = &quot;url&quot;)]
+    pub url: String,
+    #[structopt(short = &quot;h&quot;, long = &quot;cmd&quot;)]
+    pub cmd: Cmd,
+}
+
+arg_enum! {
+    #[derive(Debug)]
+    pub enum Cmd {
+        A,
+        B,
+        C,
+    }
+}
+
+//subcommandのもちかた
+//#[struct(subcommand)]でもつ
+#[derive(Debug, StructOpt)]
+pub enum Sub {
+    #[structopt(name = &quot;sub1&quot;, about = &quot;sub command1&quot;)]
+    #[structopt(setting(clap::AppSettings::ColoredHelp))]
+    Sub1,
+}
+
+fn main() {
+    let opt = Opt::from_args();
+    println!(&quot;{:?}&quot;, opt);
+}
+
+`./target/debug/curl_and_request -h A -c gheohgeo -u hogegeo`
+</code></pre></pre>
+<h1 id="hyper"><a class="header" href="#hyper">hyper</a></h1>
+<ul>
+<li><code>Request::builder()</code>を使うことで非常に簡単にヘッダー付きのリクエストを生成することができます。</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let req = Request::builder()
+.method(Method::POST)
+.uri(&quot;http://httpbin.org/post&quot;)
+.header(&quot;content-type&quot;, &quot;application/json&quot;)
+.body(Body::from(r#&quot;{&quot;library&quot;:&quot;hyper&quot;}&quot;#))?;
+<span class="boring">}
+</span></code></pre></pre>
 
                     </main>
 
